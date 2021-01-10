@@ -1,0 +1,48 @@
+body {
+    display: grid;
+    grid-template-columns: repeat(3, 33.33%);
+    grid-template-rows: repeat(2, 50%);
+    justify-items: center;
+    align-items: center;
+    gap: 10px;
+    background-image:repeating-radial-gradient(rgb(93, 149, 187), rgb(124, 124, 177));
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(216, 208, 92, 0.842);
+    font-size: xx-large;
+    font-weight: bold;
+    text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+#new-book {
+    margin: 100px;
+    padding: 50px;
+    font-size: large;
+    font-weight: bold;
+    background-color: rgba(216, 208, 92, 0.842);
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    background-color: rgba(216, 208, 92, 0.842);
+    visibility: hidden;
+}
+
+table {
+    grid-column: 1 / 4;
+    width: 90%;
+    border: solid;
+    text-align: center;
+}
