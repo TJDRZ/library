@@ -1,12 +1,16 @@
-//let myLibrary = [];
+let myLibrary = [];
 
 const inputForm = document.querySelector('form');
+const table = document.querySelector('tbody');
 
 document.querySelector('#new-book').addEventListener('click', () => {
   inputForm.style.visibility = "visible";
 })
 
 document.querySelector('#submit').addEventListener('click', () => {
+  while (table.hasChildNodes()){
+    table.removeChild(table.lastChild);
+  }
   addBookToLibrary();
   inputForm.style.visibility = "hidden";
 })
@@ -16,6 +20,7 @@ function Book(title, author, pages, read) {
   this.author;
   this.pages;
   this.read;
+  this.id;
 }
 
 function addBookToLibrary() {
@@ -23,58 +28,65 @@ function addBookToLibrary() {
   newBook.title = document.querySelector('#title').value;
   newBook.author = document.querySelector('#author').value;
   newBook.pages = document.querySelector('#pages').value;
-  newBook.read = document.querySelector('#read').checked; 
-  //myLibrary.push(newBook);
-  addBookToTable(newBook);
-  //console.log(myLibrary);
+  newBook.read = document.querySelector('#read').checked;
+  newBook.id = myLibrary.length;
+  myLibrary.push(newBook);
+  libraryLooper(myLibrary);
 }
 
-function addBookToTable(newBook) {
-  const table = document.querySelector('tbody');
+function libraryLooper(myLibrary) {
+  myLibrary.forEach(addBookToTable);
+}
+
+function addBookToTable(book) {
   const row = table.insertRow();
 
   const titleCell = row.insertCell(0);
-  titleCell.innerHTML = newBook.title;
+  titleCell.textContent = book.title;
 
   const authorCell = row.insertCell(1);
-  authorCell.innerHTML = newBook.author;
+  authorCell.textContent = book.author;
 
   const pagesCell = row.insertCell(2);
-  pagesCell.innerHTML = newBook.pages;
+  pagesCell.textContent = book.pages;
 
   const readCell = row.insertCell(3);
-  readCell.innerHTML = newBook.read;
+  readCell.textContent = book.read;
 
   const readButton = row.insertCell(4);
-  readButton.appendChild(markAsReadButton(readCell));
+  readButton.appendChild(markAsReadButton(book, readCell));
 
   const remove = row.insertCell(5);
-  remove.appendChild(removeBook(row));
+  remove.appendChild(removeBook(row, book));
 
   table.appendChild(row);
 }
 
-function markAsReadButton(readCell) {
+function markAsReadButton(book, readCell) {
   const button = document.createElement('input');
   button.type = 'button';
   button.value = 'Read?';
   button.addEventListener('click', () => {
-    if (readCell.innerHTML == "true") {
-      readCell.innerHTML = "false";
+    if (book.read == "true") {
+      book.read = "false";
+      readCell.textContent = "false";
     }
     else {
-      readCell.innerHTML = "true";
+      book.read = "true";
+      readCell.textContent = "true";
     }
   })
   return button;
 }
 
-function removeBook(row) {
+function removeBook(row, book) {
   const button = document.createElement('input');
   button.type = 'button';
   button.value = 'Remove';
   button.addEventListener('click', () => {
-    row.parentNode.removeChild(row);
+      let removed = myLibrary.splice(book.id, 1); 
+      row.parentNode.removeChild(row);
+      myLibrary.forEach(book => book.id = myLibrary.indexOf(book));
   })
   return button;
 }
