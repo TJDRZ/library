@@ -15,16 +15,18 @@ document.querySelector('#submit').addEventListener('click', () => {
   inputForm.style.visibility = "hidden";
 })
 
-function Book(title, author, pages, read) {
-  this.title;
-  this.author;
-  this.pages;
-  this.read;
-  this.id;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title;
+    this.author;
+    this.pages;
+    this.read;
+    this.id;
+  }
 }
 
 function addBookToLibrary() {
-  const newBook = Object.create(Book);
+  const newBook = new Book();
   newBook.title = document.querySelector('#title').value;
   newBook.author = document.querySelector('#author').value;
   newBook.pages = document.querySelector('#pages').value;
