@@ -2,18 +2,24 @@ let myLibrary = [];
 
 const inputForm = document.querySelector('form');
 const table = document.querySelector('tbody');
+const title = document.querySelector('#title');
+const author = document.querySelector('#author');
+const pages = document.querySelector('#pages');
 
 document.querySelector('#new-book').addEventListener('click', () => {
   inputForm.style.visibility = "visible";
-})
+});
 
-document.querySelector('#submit').addEventListener('click', () => {
-  while (table.hasChildNodes()){
-    table.removeChild(table.lastChild);
+document.querySelector('#submit').addEventListener('click', (e) => {
+  if (title.validity.valid && author.validity.valid && pages.validity.valid) {
+    while (table.hasChildNodes()){
+      table.removeChild(table.lastChild);
+    }
+    addBookToLibrary();
+    inputForm.style.visibility = "hidden";
+    e.preventDefault();
   }
-  addBookToLibrary();
-  inputForm.style.visibility = "hidden";
-})
+});
 
 class Book {
   constructor(title, author, pages, read) {
@@ -27,9 +33,9 @@ class Book {
 
 function addBookToLibrary() {
   const newBook = new Book();
-  newBook.title = document.querySelector('#title').value;
-  newBook.author = document.querySelector('#author').value;
-  newBook.pages = document.querySelector('#pages').value;
+  newBook.title = title.value;
+  newBook.author = author.value;
+  newBook.pages = pages.value;
   newBook.read = document.querySelector('#read').checked;
   newBook.id = myLibrary.length;
   myLibrary.push(newBook);

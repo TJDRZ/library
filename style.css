@@ -31,7 +31,7 @@ h2 {
     background-color: rgba(216, 208, 92, 0.842);
 }
 
-.input {
+#input-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -46,4 +46,20 @@ table {
     width: 90%;
     border: solid;
     text-align: center;
+}
+
+input:invalid {
+    border: solid red;
+}
+
+input:valid {
+    border: solid green;
+}
+
+input {
+    background-color: #ddd;
+}
+
+input:focus {
+    background-color: #fff;
 }
