@@ -8,39 +8,41 @@
         <title>Library</title>
     </head>
     <body>
-        <button id="new-book">New Book</button>
-        <header>
-            <h1>Library Logger</h1>
-            <h2>By: TJDRZ</h2>
-        </header>
-        <form id="input-form">
-            <label>Title:</label>
-            <input 
+        <header id="header">
+            <button id="new-book">New Book</button>
+            <div>
+                <h1>Library Logger</h1>
+                <h2>By: TJDRZ</h2>
+            </div>
+            <form id="input-form" method="GET" action="#">
+                <label>Title:</label>
+                <input 
                 id="title" 
                 type="text"
                 maxlength="20"
                 required
-            >
-            <label>Author:</label>
-            <input 
+                >
+                <label>Author:</label>
+                <input 
                 id="author" 
                 type="text"
                 maxlength="20"
                 required
-            >
-            <label># of Pages:</label>
-            <input 
+                >
+                <label># of Pages:</label>
+                <input 
                 id="pages" 
                 type="number" 
                 required
-            >
-            <label>Has it been read? (check)</label>
-            <input 
+                >
+                <label>Has it been read? (check)</label>
+                <input 
                 id="read" 
                 type="checkbox"
-            >
-            <button id="submit">Submit</button>
-        </form>
+                >
+                <button id="submit">Submit</button>
+            </form>
+        </header>
         <table>
             <thead>
                 <tr>
@@ -48,12 +50,11 @@
                     <th>Author</th>
                     <th>Pages</th>
                     <th>Read?</th>
-                    <th>&check;</th>
                     <th>Remove</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
-        <script src="library.js"></script>
+        <script src="index.js"></script>
     </body>
 </html>
